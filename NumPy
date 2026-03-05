@@ -1,0 +1,11 @@
+import numpy as np
+
+data = np.array([10, 20, 30, 40])
+
+mean = data.mean()
+std = data.std()
+
+normalized = (data - mean) / std
+reshaped = normalized.reshape(2, 2)
+
+data, mean, std, normalized, reshaped.shape
