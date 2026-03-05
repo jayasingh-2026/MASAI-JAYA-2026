@@ -1,0 +1,37 @@
+import json
+
+api_response = '''
+{
+  "id": "req_123",
+  "status": "success",
+  "result": {
+    "text": "Hello world",
+    "confidence": 0.98
+  }
+}
+'''
+
+data = json.loads(api_response)
+
+request_id = data["id"]
+status = data["status"]
+text = data["result"]["text"]
+confidence = data["result"]["confidence"]
+
+print("Request ID:", request_id)
+print("Status:", status)
+print("Text:", text)
+print("Confidence:", confidence)
+
+if confidence < 0.9:
+    print("Warning: Confidence score is below 0.9")
+
+new_result = {
+    "request_id": request_id,
+    "status_checked": True
+}
+
+json_output = json.dumps(new_result)
+
+with open("response.json", "w") as file:
+    file.write(json_output)
